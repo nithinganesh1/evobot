@@ -1,0 +1,7 @@
+# Ignore evobot description files
+evobot_description_gz/
+
+# Ignore evobot Gazebo files
+evobot_gazebo/
+
+#

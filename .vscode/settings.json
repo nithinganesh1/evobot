@@ -1,0 +1,20 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/vishnu/evr_ws/install/evobot_gazebo/lib/python3.10/site-packages",
+        "/home/vishnu/rbl_ws/install/evr_robo_description/lib/python3.10/site-packages",
+        "/home/vishnu/evr_ws/install/evr_robo_description/lib/python3.10/site-packages",
+        "/home/vishnu/evr_ws/install/evobot_description_gz/lib/python3.10/site-packages",
+        "/home/vishnu/evr_ws/install/evobot_description/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/vishnu/evr_ws/install/evobot_gazebo/lib/python3.10/site-packages",
+        "/home/vishnu/rbl_ws/install/evr_robo_description/lib/python3.10/site-packages",
+        "/home/vishnu/evr_ws/install/evr_robo_description/lib/python3.10/site-packages",
+        "/home/vishnu/evr_ws/install/evobot_description_gz/lib/python3.10/site-packages",
+        "/home/vishnu/evr_ws/install/evobot_description/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

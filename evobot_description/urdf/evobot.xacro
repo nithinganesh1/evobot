@@ -1,0 +1,225 @@
+<?xml version="1.0" ?>
+<robot name="evobot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find evobot_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find evobot_description)/urdf/evobot.trans" />
+<xacro:include filename="$(find evobot_description)/urdf/evobot.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="15.11"/>
+    <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="r_wheel_1">
+  <inertial>
+    <origin xyz="4.41342455683863e-05 -0.05229712196985947 1.3159686441860385e-05" rpy="0 0 0"/>
+    <mass value="1.6688719376055752"/>
+    <inertia ixx="0.001251" iyy="0.001881" izz="0.001247" ixy="-1e-06" iyz="-0.0" ixz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.073436 0.153 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/r_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.073436 0.153 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/r_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="l_wheel_1">
+  <inertial>
+    <origin xyz="-4.4209750368520706e-05 0.05229712216807195 1.3253273160526713e-05" rpy="0 0 0"/>
+    <mass value="1.6688727989590497"/>
+    <inertia ixx="0.001251" iyy="0.001881" izz="0.001247" ixy="-1e-06" iyz="0.0" ixz="-1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.073436 -0.153 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/l_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.073436 -0.153 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/l_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="l_swivel_1">
+  <inertial>
+    <origin xyz="-0.0075588747800388045 -0.00016701688846793017 -0.017126379337595837" rpy="0 0 0"/>
+    <mass value="0.2750872504728614"/>
+    <inertia ixx="0.000151" iyy="0.00016" izz="0.000125" ixy="-1e-06" iyz="-2e-06" ixz="-4.8e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.148715 -0.141 -0.083787" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/l_swivel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.148715 -0.141 -0.083787" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/l_swivel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="r_swivel_1">
+  <inertial>
+    <origin xyz="-0.007558834780037882 -0.00016702030931664558 -0.01712637933759595" rpy="0 0 0"/>
+    <mass value="0.2750872504728623"/>
+    <inertia ixx="0.000151" iyy="0.00016" izz="0.000125" ixy="-1e-06" iyz="-2e-06" ixz="-4.8e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.149208 0.141 -0.083787" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/r_swivel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.149208 0.141 -0.083787" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/r_swivel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="l_swheel_1">
+  <inertial>
+    <origin xyz="1.2766817525378116e-07 -0.016098800000000135 -2.7705375890349493e-07" rpy="0 0 0"/>
+    <mass value="0.40027421055697676"/>
+    <inertia ixx="0.000105" iyy="0.000177" izz="0.000105" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.176752 -0.157099 -0.030626" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/l_swheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.176752 -0.157099 -0.030626" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/l_swheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="r_swheel_1">
+  <inertial>
+    <origin xyz="0.0004931676681760311 -0.016098800000000427 -2.770537588792088e-07" rpy="0 0 0"/>
+    <mass value="0.40027421055697615"/>
+    <inertia ixx="0.000105" iyy="0.000177" izz="0.000105" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.177738 0.124901 -0.030626" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/r_swheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.177738 0.124901 -0.030626" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/r_swheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+
+<link name="lidar_1">
+  <inertial>
+    <origin xyz="0 0 0 0 0 0"/>
+    <mass value="0.05"/>
+    <inertia ixx="1e-5" iyy="1e-5" izz="1e-5" ixy="0" ixz="0" iyz="0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.248815 0.000722 -0.170732" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find evobot_description)/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+
+<joint name="right_wheel_joint" type="continuous">
+  <origin xyz="0.073436 -0.153 0.05" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="r_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="left_wheel_joint" type="continuous">
+  <origin xyz="0.073436 0.153 0.05" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="l_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="left_swivel_joint" type="continuous">
+  <origin xyz="-0.148715 0.141 0.083787" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="l_swivel_1"/>
+  <axis xyz="0.0 -0.0 -1.0"/>
+</joint>
+
+<joint name="right_swivel_joint" type="continuous">
+  <origin xyz="-0.149208 -0.141 0.083787" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="r_swivel_1"/>
+  <axis xyz="0.0 0.0 1.0"/>
+</joint>
+
+<joint name="left_swheel_joint" type="continuous">
+  <origin xyz="-0.028037 0.016099 -0.053161" rpy="0 0 0"/>
+  <parent link="l_swivel_1"/>
+  <child link="l_swheel_1"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+</joint>
+
+<joint name="right_swheel_joint" type="continuous">
+  <origin xyz="-0.02853 0.016099 -0.053161" rpy="0 0 0"/>
+  <parent link="r_swivel_1"/>
+  <child link="r_swheel_1"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+</joint>
+
+<joint name="lidar_joint" type="fixed">
+  <origin xyz="0.248815 -0.000722 0.180732" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+</joint>
+
+
+</robot>
