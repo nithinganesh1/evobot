@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Robot Control</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#137fec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk"]
+            },
+            borderRadius: {
+              "DEFAULT": "9999px",
+              "lg": "9999px",
+              "xl": "9999px",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+</script>
+<style>
+.material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; font-size: 32px; }
+.control-btn:active { transform: scale(0.95); box-shadow: 0 0 20px 0 rgba(19, 127, 236, 0.5); }
+</style>
+<style>body { min-height: max(884px, 100dvh); }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary selection:text-white">
+<div class="flex flex-col h-screen justify-between">
+<header class="flex items-center p-4">
+<h1 class="text-xl font-bold text-center w-full text-zinc-900 dark:text-white">Robot Control</h1>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center p-4 space-y-8">
+<div class="grid grid-cols-3 grid-rows-3 gap-4 w-full max-w-xs">
+  <div class="col-start-2 flex items-center justify-center">
+    <button class="control-btn bg-primary/20 dark:bg-primary/30 p-4 rounded-full shadow-lg transition-transform" data-direction="forward"><span class="material-symbols-outlined text-primary">arrow_upward</span></button>
+  </div>
+  <div class="col-start-1 row-start-2 flex items-center justify-center">
+    <button class="control-btn bg-primary/20 dark:bg-primary/30 p-4 rounded-full shadow-lg transition-transform" data-direction="left"><span class="material-symbols-outlined text-primary">arrow_back</span></button>
+  </div>
+  <div class="col-start-3 row-start-2 flex items-center justify-center">
+    <button class="control-btn bg-primary/20 dark:bg-primary/30 p-4 rounded-full shadow-lg transition-transform" data-direction="right"><span class="material-symbols-outlined text-primary">arrow_forward</span></button>
+  </div>
+  <div class="col-start-2 row-start-3 flex items-center justify-center">
+    <button class="control-btn bg-primary/20 dark:bg-primary/30 p-4 rounded-full shadow-lg transition-transform" data-direction="backward"><span class="material-symbols-outlined text-primary">arrow_downward</span></button>
+  </div>
+</div>
+<div class="w-full max-w-xs space-y-6">
+  <div class="space-y-2">
+    <div class="flex justify-between items-center">
+      <label class="font-medium text-zinc-700 dark:text-zinc-300" for="linear-speed">Linear Speed</label>
+      <span class="text-sm font-mono text-zinc-900 dark:text-white" id="linear-speed-value">0.50</span>
+    </div>
+    <input class="w-full h-2 bg-primary/20 dark:bg-primary/30 rounded-full appearance-none cursor-pointer accent-primary" id="linear-speed" max="1" min="0" step="0.01" type="range" value="0.5"/>
+  </div>
+  <div class="space-y-2">
+    <div class="flex justify-between items-center">
+      <label class="font-medium text-zinc-700 dark:text-zinc-300" for="angular-speed">Angular Speed</label>
+      <span class="text-sm font-mono text-zinc-900 dark:text-white" id="angular-speed-value">0.50</span>
+    </div>
+    <input class="w-full h-2 bg-primary/20 dark:bg-primary/30 rounded-full appearance-none cursor-pointer accent-primary" id="angular-speed" max="1" min="0" step="0.01" type="range" value="0.5"/>
+  </div>
+</div>
+</main>
+<footer class="bg-background-light dark:bg-zinc-900/50 border-t border-primary/10 dark:border-primary/20 p-2 shadow-inner">
+<nav class="flex justify-around">
+<a class="flex flex-col items-center justify-center p-2 rounded-full text-primary w-20 h-14" href="#"><span class="material-symbols-outlined">gamepad</span><span class="text-xs font-medium">Control</span></a>
+<a class="flex flex-col items-center justify-center p-2 rounded-full text-zinc-500 dark:text-zinc-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors w-20 h-14" href="#"><span class="material-symbols-outlined !fill-0">settings</span><span class="text-xs font-medium">Settings</span></a>
+<a class="flex flex-col items-center justify-center p-2 rounded-full text-zinc-500 dark:text-zinc-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors w-20 h-14" href="#"><span class="material-symbols-outlined !fill-0">chat</span><span class="text-xs font-medium">Chat</span></a>
+</nav>
+</footer>
+</div>
+<script>
+// Control buttons with press-and-hold functionality
+const controlButtons = document.querySelectorAll('.control-btn');
+controlButtons.forEach(btn => {
+  const dir = btn.getAttribute('data-direction');
+  btn.addEventListener('mousedown', () => sendCommand(dir,true));
+  btn.addEventListener('touchstart', () => sendCommand(dir,true));
+  btn.addEventListener('mouseup', () => sendCommand(dir,false));
+  btn.addEventListener('mouseleave', () => sendCommand(dir,false));
+  btn.addEventListener('touchend', () => sendCommand(dir,false));
+});
+
+function sendCommand(direction, pressed) {
+  fetch('/control', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({direction: direction, pressed: pressed})
+  });
+}
+
+// Speed sliders
+const linearSlider = document.getElementById('linear-speed');
+const angularSlider = document.getElementById('angular-speed');
+const linearVal = document.getElementById('linear-speed-value');
+const angularVal = document.getElementById('angular-speed-value');
+
+function sendSpeed() {
+  fetch('/set_speed', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({linear: parseFloat(linearSlider.value), angular: parseFloat(angularSlider.value)})
+  });
+  linearVal.innerText = linearSlider.value;
+  angularVal.innerText = angularSlider.value;
+}
+
+linearSlider.addEventListener('input', sendSpeed);
+angularSlider.addEventListener('input', sendSpeed);
+</script>
+</body>
+</html>

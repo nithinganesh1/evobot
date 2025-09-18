@@ -4,4 +4,6 @@ evobot_description_gz/
 # Ignore evobot Gazebo files
 evobot_gazebo/
 
-#
+#gui test
+evorobo/
+
