@@ -33,6 +33,27 @@
       }
 </script>
 <style>
+.material-symbols-outlined { 
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; 
+  font-size: 32px; 
+}
+.control-btn:active { 
+  transform: scale(0.95); 
+  box-shadow: 0 0 20px 0 rgba(19, 127, 236, 0.5); 
+}
+
+/* 🚫 Disable selection/highlight on buttons */
+.control-btn {
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none;     /* IE/Edge */
+  -webkit-touch-callout: none; /* iOS long-press menu */
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+</style>
+
+<style>
 .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; font-size: 32px; }
 .control-btn:active { transform: scale(0.95); box-shadow: 0 0 20px 0 rgba(19, 127, 236, 0.5); }
 </style>
