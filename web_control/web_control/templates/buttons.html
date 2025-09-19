@@ -104,6 +104,13 @@
 </nav>
 </footer>
 </div>
+
+<div class="flex items-center justify-center">
+  <button id="fullscreen-btn" class="control-btn bg-primary/20 dark:bg-primary/30 p-4 rounded-full shadow-lg transition-transform">
+    <span class="material-symbols-outlined text-primary">fullscreen</span>
+  </button>
+</div>
+
 <script>
 // Control buttons with press-and-hold functionality
 const controlButtons = document.querySelectorAll('.control-btn');
@@ -142,6 +149,20 @@ function sendSpeed() {
 
 linearSlider.addEventListener('input', sendSpeed);
 angularSlider.addEventListener('input', sendSpeed);
+
+// Fullscreen toggle
+const fsBtn = document.getElementById("fullscreen-btn");
+
+fsBtn.addEventListener("click", () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(err => {
+      console.warn(`Error attempting to enable full-screen mode: ${err.message}`);
+    });
+  } else {
+    document.exitFullscreen();
+  }
+});
+
 </script>
 </body>
 </html>
