@@ -17,7 +17,6 @@ class WakeWordNode(Node):
         self.model = Model('vosk-model-small-en-us-0.15')
         self.recognizer = KaldiRecognizer(self.model, 16000)
 
-
         # Audio stream setup
         self.audio = pyaudio.PyAudio()
         self.stream = self.audio.open(format=pyaudio.paInt16,
@@ -25,7 +24,6 @@ class WakeWordNode(Node):
                                         input=True,
                                         frames_per_buffer=8000)
         self.stream.start_stream()
-
         self.timer = self.create_timer(0.1, self.listen_for_wake_word)
 
         def listen_for_wake_word(self):
