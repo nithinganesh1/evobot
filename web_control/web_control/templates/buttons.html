@@ -33,6 +33,27 @@
       }
 </script>
 <style>
+.material-symbols-outlined { 
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; 
+  font-size: 32px; 
+}
+.control-btn:active { 
+  transform: scale(0.95); 
+  box-shadow: 0 0 20px 0 rgba(19, 127, 236, 0.5); 
+}
+
+/* 🚫 Disable selection/highlight on buttons */
+.control-btn {
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none;     /* IE/Edge */
+  -webkit-touch-callout: none; /* iOS long-press menu */
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+</style>
+
+<style>
 .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; font-size: 32px; }
 .control-btn:active { transform: scale(0.95); box-shadow: 0 0 20px 0 rgba(19, 127, 236, 0.5); }
 </style>
@@ -83,6 +104,13 @@
 </nav>
 </footer>
 </div>
+
+<div class="flex items-center justify-center">
+  <button id="fullscreen-btn" class="control-btn bg-primary/20 dark:bg-primary/30 p-4 rounded-full shadow-lg transition-transform">
+    <span class="material-symbols-outlined text-primary">fullscreen</span>
+  </button>
+</div>
+
 <script>
 // Control buttons with press-and-hold functionality
 const controlButtons = document.querySelectorAll('.control-btn');
@@ -121,6 +149,20 @@ function sendSpeed() {
 
 linearSlider.addEventListener('input', sendSpeed);
 angularSlider.addEventListener('input', sendSpeed);
+
+// Fullscreen toggle
+const fsBtn = document.getElementById("fullscreen-btn");
+
+fsBtn.addEventListener("click", () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(err => {
+      console.warn(`Error attempting to enable full-screen mode: ${err.message}`);
+    });
+  } else {
+    document.exitFullscreen();
+  }
+});
+
 </script>
 </body>
 </html>
