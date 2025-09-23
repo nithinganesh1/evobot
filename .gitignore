@@ -7,3 +7,8 @@ evobot_gazebo/
 #gui test
 evorobo/
 
+#api_key
+evo_voice/evo_voice/key.py
+
+#pycache
+evo_voice/evo_voice/__pycache__
