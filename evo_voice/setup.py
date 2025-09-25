@@ -20,6 +20,10 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'wake_word_node = evo_voice.wake_word_node:main',
+            'mic_manager_node = evo_voice.mic_manager_node:main',
+            'dialog_manager_node = evo_voice.dialog_manager_node:main',
+            'tts_node = evo_voice.tts_evo:main',
         ],
     },
 )
