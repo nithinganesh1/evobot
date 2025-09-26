@@ -46,6 +46,12 @@
     <label>Angular Speed: <span id="angular-speed-value">0.5</span></label>
     <input id="angular-speed" type="range" min="0" max="1" step="0.01" value="0.5" class="w-full">
   </div>
+  <div class="flex items-center justify-center">
+  <button id="fullscreen-btn" class="control-btn bg-primary/20 dark:bg-primary/30 p-4 rounded-full shadow-lg transition-transform">
+    <span class="material-symbols-outlined text-primary">fullscreen</span>
+  </button>
+</div>
+
 </main>
 
 <script>
@@ -91,6 +97,19 @@ function sendSpeed() {
 
 linearSlider.addEventListener('input', sendSpeed);
 angularSlider.addEventListener('input', sendSpeed);
+// Fullscreen toggle
+const fsBtn = document.getElementById("fullscreen-btn");
+
+fsBtn.addEventListener("click", () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(err => {
+      console.warn(`Error attempting to enable full-screen mode: ${err.message}`);
+    });
+  } else {
+    document.exitFullscreen();
+  }
+});
+
 </script>
 </body>
 </html>

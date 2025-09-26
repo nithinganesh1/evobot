@@ -11,5 +11,5 @@ evorobo/
 evo_voice/evo_voice/key.py
 
 #pycache
-evo_voice/evo_voice/__pycache__
-web_control/web_control/__pycache__
+evo_voice/evo_voice/__pycache_/*_
+web_control/web_control/__pycache_/*_
