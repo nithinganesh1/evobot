@@ -4,6 +4,7 @@ from rclpy.node import Node
 from std_msgs.msg import String
 import os
 import wave
+import subprocess
 from piper import PiperVoice
 
 # Load the Piper voice model
@@ -47,11 +48,8 @@ class TTSNode(Node):
 
             self.get_logger().info(f"✅ Audio saved to {output_file}")
 
-            # Optionally play the audio immediately
-            import simpleaudio as sa
-            wave_obj = sa.WaveObject.from_wave_file(output_file)
-            play_obj = wave_obj.play()
-            play_obj.wait_done()
+            # Play the audio immediately on the working speaker (card 0, device 0)
+            subprocess.run(["aplay", "-D", "plughw:0,0", output_file])
 
         except Exception as e:
             self.get_logger().error(f"Error generating TTS: {e}")
@@ -70,3 +68,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+

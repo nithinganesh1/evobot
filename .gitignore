@@ -4,12 +4,16 @@ evobot_description_gz/
 # Ignore evobot Gazebo files
 evobot_gazebo/
 
-#gui test
+# GUI test folder
 evorobo/
 
-#api_key
+# API key file
 evo_voice/evo_voice/key.py
 
-#pycache
-evo_voice/evo_voice/__pycache__
-web_control/web_control/__pycache__
+# Ignore Python cache folders
+evo_voice/evo_voice/__pycache__/
+web_control/web_control/__pycache__/
+
+# Optional - ignore all __pycache__ globally
+__pycache__/
+
