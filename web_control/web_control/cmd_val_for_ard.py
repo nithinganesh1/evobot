@@ -5,7 +5,7 @@ from geometry_msgs.msg import Twist
 import serial
 import time
 
-arduino_port = "/dev/ttyUSB0"
+arduino_port = "/dev/ttyUSB1"
 baudrate = 9600
 ser = serial.Serial(arduino_port, baudrate, timeout=1)
 time.sleep(2)
