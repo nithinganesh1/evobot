@@ -11,24 +11,21 @@ def generate_launch_description():
         'launch',
         'rplidar_a1_launch.py'
     )
-
+    webcontrol_gui_Node = Node(
+        package='web_control',
+        executable='web_gui',
+        name='web_gui',
+        output='screen'
+    )
+    cmd_val_for_ard_Node = Node(
+        package='web_control',
+        executable='cmd_val_for_ard',
+        name='cmd_val_for_ard',
+        output='screen'
+    )
     return LaunchDescription([
-        # Web GUI Node
-        Node(
-            package='web_control',
-            executable='web_gui',
-            name='web_gui',
-            output='screen'
-        ),
-
-        # Command Value Node
-        Node(
-            package='web_control',
-            executable='cmd_val_for_ard',
-            name='cmd_val_for_ard',
-            output='screen'
-        ),
-
+        webcontrol_gui_Node,
+        cmd_val_for_ard_Node,
         # RPLIDAR A1 launch
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(rplidar_launch_file),
