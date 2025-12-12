@@ -13,7 +13,7 @@
   <material>${body_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
-  <self_collide>true</self_collide>
+	<self_collide>false</self_collide>
   <gravity>true</gravity>
 </gazebo>
 
@@ -100,7 +100,7 @@
 		<sensor name="ydlidar" type="ray">
 			<always_on>true</always_on>
 			<visualize>true</visualize>
-			<update_rate>10</update_rate>
+			<update_rate>20</update_rate>
 			<ray>
 			<scan>
 				<horizontal>
@@ -121,7 +121,7 @@
 				<stddev>0.01</stddev>
 			</noise>
 			</ray>
-			<plugin name="ttb_lidar" filename="libgazebo_ros_ray_sensor.so">
+			<plugin name="evo_lidar" filename="libgazebo_ros_ray_sensor.so">
 			<ros>
 				<remapping>~/out:=scan</remapping>
 			</ros>

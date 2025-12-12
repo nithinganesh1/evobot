@@ -19,7 +19,8 @@
   <inertial>
     <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
     <mass value="15.11"/>
-    <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    <!-- Approximate box inertia computed for a ~0.4 x 0.3 x 0.2 m base, mass=15.11 kg -->
+    <inertia ixx="0.164" iyy="0.252" izz="0.315" ixy="0.0" iyz="0.0" ixz="0.0"/>
   </inertial>
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -165,7 +166,7 @@
 
 <link name="lidar_1">
   <inertial>
-    <origin xyz="0 0 0 0 0 0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
     <mass value="0.05"/>
     <inertia ixx="1e-5" iyy="1e-5" izz="1e-5" ixy="0" ixz="0" iyz="0"/>
   </inertial>

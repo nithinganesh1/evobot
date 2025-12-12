@@ -109,7 +109,7 @@ Visualization Manager:
 
   Enabled: true
   Global Options:
-    Background Color: 48; 48; 48
+    Background Color: 48;48;48
     Fixed Frame: odom
     Frame Rate: 30
 
@@ -149,7 +149,7 @@ Visualization Manager:
       Yaw: 2.5
 
 Window Geometry:
-  Height: 846
-  Width: 1200
-  X: 3402
-  Y: 437
+  Height: 1080  
+  Width: 1920
+  X: 0
+  Y: 0

@@ -12,6 +12,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/config', ['config/ekf.yaml', 'config/slam.lua']),
         ('share/' + package_name + '/launch', ['launch/cartographer.launch.py']),
+        ('share/' + package_name + '/maps', ['maps/README.md']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
