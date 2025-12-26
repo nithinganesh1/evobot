@@ -10,8 +10,12 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        ('share/' + package_name + '/config', ['config/nav2_params_robot.yaml', 'config/nav2_params_simulation.yaml']),
         ('share/' + package_name + '/config', ['config/ekf.yaml', 'config/slam.lua']),
+
         ('share/' + package_name + '/launch', ['launch/cartographer.launch.py']),
+        ('share/' + package_name + '/launch', ['launch/navigation.launch.py']),
+
         ('share/' + package_name + '/maps', ['maps/README.md']),
     ],
     install_requires=['setuptools'],

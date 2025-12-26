@@ -36,6 +36,14 @@
     </geometry>
   </collision>
 </link>
+<!-- IMU link -->
+<link name="imu_link">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.01"/>
+    <inertia ixx="1e-6" iyy="1e-6" izz="1e-6" ixy="0" ixz="0" iyz="0"/>
+  </inertial>
+</link>
 
 <link name="r_wheel_1">
   <inertial>
@@ -231,6 +239,12 @@
   <origin xyz="0.248815 -0.000722 0.180732" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="lidar_1"/>
+</joint>
+
+<joint name="imu_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="imu_link"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
 </joint>
 
 
