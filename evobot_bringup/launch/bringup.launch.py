@@ -1,7 +1,9 @@
+
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from ament_index_python.packages import get_package_share_directory
 import os
 
 def generate_launch_description():
@@ -23,14 +25,21 @@ def generate_launch_description():
         name='cmd_val_for_ard',
         output='screen'
     )
+    joystick_launch_file = os.path.join(
+        get_package_share_directory('evobot_joystick'),
+        'launch',
+        'evobot_joystick.launch.py'
+    )
+
     return LaunchDescription([
         webcontrol_gui_Node,
         cmd_val_for_ard_Node,
         # RPLIDAR A1 launch
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(rplidar_launch_file),
+        ),
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(joystick_launch_file),
         )
     ])
 
-# Needed import
-from ament_index_python.packages import get_package_share_directory

@@ -16,5 +16,6 @@
         "/home/vishnu/evr_ws/install/evobot_description/lib/python3.10/site-packages",
         "/opt/ros/humble/lib/python3.10/site-packages",
         "/opt/ros/humble/local/lib/python3.10/dist-packages"
-    ]
+    ],
+    "cmake.sourceDirectory": "/home/vishnu/evr_ws/src/evobot/rplidar_ros"
 }
