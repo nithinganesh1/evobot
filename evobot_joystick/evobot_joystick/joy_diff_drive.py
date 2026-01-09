@@ -34,17 +34,13 @@ class JoyDiffDrive(Node):
         self.min_scale = 0.0
         self.deadzone = 0.10
 
+
         self.last_buttons = []
+        self.wait_for_zero = True
 
         self.get_logger().info("Evobot Joystick Controller Started")
 
     def joy_callback(self, msg):
-        if not self.last_buttons:
-            self.last_buttons = msg.buttons
-            return
-
-        twist = Twist()
-
         # -------- AXIS MAP --------
         AXIS_LX = 0   # Left stick horizontal
         AXIS_LY = 1   # Left stick vertical
@@ -56,6 +52,25 @@ class JoyDiffDrive(Node):
         BTN_Y = 4
         BTN_LB = 6
         BTN_RB = 7
+
+        # -------- JOYSTICK INPUT --------
+        lx = msg.axes[AXIS_LX]
+        ly = msg.axes[AXIS_LY]
+
+        if abs(lx) < self.deadzone:
+            lx = 0.0
+        if abs(ly) < self.deadzone:
+            ly = 0.0
+
+        # Wait until both lx and ly are zero at the same time before publishing
+        if self.wait_for_zero:
+            if lx == 0.0 and ly == 0.0:
+                self.get_logger().info("Joystick centered (lx=0, ly=0). Starting to publish cmd_vel.")
+                self.wait_for_zero = False
+            else:
+                # Still waiting for both axes to be zero
+                self.last_buttons = msg.buttons
+                return
 
         # -------- OVERALL SPEED --------
         if msg.buttons[BTN_RB] and not self.last_buttons[BTN_RB]:
@@ -84,16 +99,13 @@ class JoyDiffDrive(Node):
             self.angular_scale = max(self.angular_scale - self.step, self.min_scale)
             self.get_logger().info(f"Angular scale: {int(self.angular_scale * 100)}%")
 
-        # -------- JOYSTICK INPUT --------
-        lx = msg.axes[AXIS_LX]
-        ly = msg.axes[AXIS_LY]
-
-        if abs(lx) < self.deadzone:
-            lx = 0.0
-        if abs(ly) < self.deadzone:
-            ly = 0.0
-
         # -------- DIRECT DRIVE --------
+        twist = Twist()
+        twist.linear.x = ly * self.base_speed * self.linear_scale
+        twist.angular.z = lx * self.base_speed * self.angular_scale
+
+        self.pub.publish(twist)
+        self.last_buttons = msg.buttons
         twist.linear.x = ly * self.base_speed * self.linear_scale
         twist.angular.z = lx * self.base_speed * self.angular_scale
 
